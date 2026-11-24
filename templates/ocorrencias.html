@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocorrências - QualityTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>QualityTrack</h1>
+        <p>Consulta de Ocorrências</p>
+    </header>
+
+    <nav>
+        <a href="/">Início</a>
+        <a href="/ocorrencias">Ocorrências</a>
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+
+    <main>
+
+        <h2>Registros cadastrados</h2>
+
+        <table border="1" cellpadding="10">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Produto</th>
+                    <th>Defeito</th>
+                    <th>Quantidade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for registro in registros %}
+
+                <tr>
+                    <td>{{ registro[0] }}</td>
+                    <td>{{ registro[1] }}</td>
+                    <td>{{ registro[2] }}</td>
+                    <td>{{ registro[3] }}</td>
+
+                    <td>
+                        <a href="/editar/{{ registro[0] }}">
+                            Editar
+                        </a>
+
+                        <form
+                            action="/excluir/{{ registro[0] }}"
+                            method="POST"
+                            style="display:inline;"
+                            onsubmit="return confirm('Deseja excluir esta ocorrência?');"
+                        >
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+                    <td colspan="5">
+                        Nenhuma ocorrência cadastrada.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <br>
+
+        <a href="/">Voltar ao início</a>
+
+    </main>
+
+</body>
+</html>
