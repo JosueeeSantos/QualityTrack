@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Ocorrência</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>QualityTrack</h1>
+        <p>Editar Ocorrência</p>
+    </header>
+
+    <nav>
+        <a href='/'>Inicio</a>
+        <a href='/ocorrencias'>Ocorrências</a>
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+
+    <main>
+
+        <h2>Atualizar registro</h2>
+
+        {% if mensagem %}
+            <p>{{ mensagem }}</p>
+        {% endif %}
+
+        <form method="POST">
+
+            <label>Produto:</label>
+            <input
+                type="text"
+                name="produto"
+                value="{{ registro[1] }}"
+                required
+            >
+
+            <label>Defeito:</label>
+            <select name="defeito" required>
+
+                <option value="Risco"
+                {% if registro[2] == "Risco" %}selected{% endif %}>
+                    Risco
+                </option>
+
+                <option value="Quebra"
+                {% if registro[2] == "Quebra" %}selected{% endif %}>
+                    Quebra
+                </option>
+
+                <option value="Trinca"
+                {% if registro[2] == "Trinca" %}selected{% endif %}>
+                    Trinca
+                </option>
+
+                <option value="Mancha"
+                {% if registro[2] == "Mancha" %}selected{% endif %}>
+                    Mancha
+                </option>
+
+                <option value="Outros"
+                {% if registro[2] == "Outros" %}selected{% endif %}>
+                    Outros
+                </option>
+
+            </select>
+
+            <label>Quantidade:</label>
+            <input
+                type="number"
+                name="quantidade"
+                min="1"
+                value="{{ registro[3] }}"
+                required
+            >
+
+            <button type="submit">Salvar alterações</button>
+
+        </form>
+
+        <br>
+        <a href="/ocorrencias">Voltar</a>
+
+    </main>
+
+</body>
+</html>
