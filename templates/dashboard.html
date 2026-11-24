@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Dashboard - QualityTrack</title>
+
+    <link rel='stylesheet'
+    href='{{ url_for('static', filename='style.css') }}'>
+</head>
+
+<body>
+
+    <header>
+        <h1>QualityTrack</h1>
+        <p>Painel de Indicadores de Qualidade</p>
+    </header>
+
+    <nav>
+        <a href='/'>Inicio</a>
+        <a href='/ocorrencias'>Ocorrências</a>
+        <a href='/dashboard'>Dashboard</a>
+    </nav>
+
+    <main>
+
+        <h2>Visão Geral da Qualidade</h2>
+
+        <section class='indicadores'>
+
+            <div class='card-indicador'>
+                <h3>Total de Ocorrências</h3>
+                <p>{{ total_ocorrencias }}</p>
+            </div>
+
+            <div class='card-indicador'>
+                <h3>Peças Afetadas</h3>
+                <p>{{ total_pecas }}</p>
+            </div>
+
+            <div class='card-indicador'>
+                <h3>Tipos de Defeitos</h3>
+                <p>{{ total_tipos }}</p>
+            </div>
+
+            <div class='card-indicador'>
+                <h3>Defeito Mais Frequente</h3>
+                <p>{{ defeito_mais_frequente }}</p>
+            </div>
+
+        </section>
+
+        <h2>Ocorrências por Tipo de Defeito</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Defeito</th>
+                    <th>Registros</th>
+                    <th>Peças Afetadas</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for defeito in defeitos %}
+
+                <tr>
+                    <td>{{ defeito[0] }}</td>
+                    <td>{{ defeito[1] }}</td>
+                    <td>{{ defeito[2] }}</td>
+                </tr>
+
+                {% else %}
+
+                <tr>
+                    <td colspan='3'>
+                        Nenhuma ocorrência cadastrada.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </main>
+
+</body>
+</html>
