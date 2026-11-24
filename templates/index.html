@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QualityTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>QualityTrack</h1>
+        <p>Sistema de Gestão da Qualidade</p>
+    </header>
+
+    <nav>
+        <a href="/">Início</a>
+        <a href="/ocorrencias">Ocorrências</a>
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+
+    <main>
+        <h2>Cadastro de Ocorrências</h2>
+
+        {% if mensagem %}
+            <p>{{ mensagem }}</p>
+        {% endif %}
+
+        <form method="POST">
+
+            <label for="produto">Nome do produto:</label>
+            <input
+                type="text"
+                id="produto"
+                name="produto"
+                placeholder="Ex: Espelho"
+                required
+            >
+
+            <label for="defeito">Tipo de defeito:</label>
+            <select id="defeito" name="defeito" required>
+                <option value="">Selecione</option>
+                <option value="Risco">Risco</option>
+                <option value="Quebra">Quebra</option>
+                <option value="Trinca">Trinca</option>
+                <option value="Mancha">Mancha</option>
+                <option value="Outros">Outros</option>
+            </select>
+
+            <label for="quantidade">Quantidade:</label>
+            <input
+                type="number"
+                id="quantidade"
+                name="quantidade"
+                min="1"
+                placeholder="Ex: 5"
+                required
+            >
+
+            <button type="submit">
+                Cadastrar ocorrência
+            </button>
+
+        </form>
+    </main>
+
+</body>
+</html>
