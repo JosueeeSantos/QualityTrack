@@ -21,28 +21,12 @@ jobs:
 
       - name: Instalar dependências
         run: |
-          pwd
-          ls -la
           python -m pip install --upgrade pip
-          pip install -r ./requirements.txt
+          pip install -r requirements.txt
+          pip install pytest
 
       - name: Verificar sintaxe Python
         run: python -m compileall -q app.py
 
-      - name: Testar páginas do QualityTrack
-        run: |
-          python - <<'PY'
-          import app
-
-          app.app.config['TESTING'] = True
-
-          with app.app.test_client() as cliente:
-              for pagina in ['/', '/ocorrencias', '/dashboard']:
-                  resposta = cliente.get(pagina)
-                  print(pagina, resposta.status_code)
-                  assert resposta.status_code == 200, (
-                      f'Erro ao acessar {pagina}'
-                  )
-
-          print('Todos os testes passaram!')
-          PY
+      - name: Executar testes automatizados
+        run: python -m pytest -v
