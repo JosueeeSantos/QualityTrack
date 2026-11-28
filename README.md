@@ -30,28 +30,6 @@ O projeto foi desenvolvido com o objetivo de aplicar conhecimentos de programaç
 | GitHub Actions | Automação dos testes |
 | Render | Hospedagem da aplicação |
 
-## Estrutura do projeto
-
-```text
-QualityTrack/
-├── .github/
-│   └── workflows/
-│       └── tests.yml
-├── static/
-│   └── style.css
-├── templates/
-│   ├── editar.html
-│   ├── ocorrencias.html
-│   ├── index.html
-│   └── dashboard.html
-├── tests/
-│   └── test_app.py
-├── app.py
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
-
 ## Como executar localmente
 
 ### 1. Clone o repositório
